@@ -43,22 +43,21 @@
   // Get transactions
   function getTransactions($request) {
 
-    $transactionType = sanitize_text_field($request['type']);
+    $transactionType = sanitize_text_field($request['type']) ?: 'buyerId';
     $currentUser = wp_get_current_user();
     $currentUserId = $currentUser->ID;
 
     if ($currentUserId) {
-    $userEmail - get_userdata($currentUserId)->user_email;
+    $userLogin = get_userdata($currentUserId)->user_login;
     $metaQuery = null;
 
     if ($transactionType) {
       $metaQuery = array(
         'key' => $transactionType,
-        'value' => $userEmail,
+        'value' => $userLogin,
         'compair' => '='
       );
     }
-
 
     $query = array(
       'post_type' => 'transaction',
