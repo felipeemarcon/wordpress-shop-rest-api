@@ -30,4 +30,18 @@
 
   add_action('jwt_auth_expire', 'expireToken');
 
+  function myLoginScreen() { ?>
+    <style type="text/css">
+      #login h1 a {
+        background-image: none;
+      }
+
+      #backtoblog {
+        display: none;
+      }
+    </style>
+
+  <?php }
+
+  add_action('login_enqueue_scripts', 'myLoginScreen');
 ?>
